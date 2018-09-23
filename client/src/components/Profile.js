@@ -1,8 +1,9 @@
 import React from 'react';
+import { Feed, Card, Icon, Image, Container } from 'semantic-ui-react';
 import axios from 'axios';
-import { Feed, Icon, Image, Card, Container } from 'semantic-ui-react';
 
-class Home extends React.Component {
+
+class Profile extends React.Component {
   state = { posts: [] }
 
   componentDidMount() {
@@ -12,9 +13,27 @@ class Home extends React.Component {
     })
   }
 
-  feed = () => (
-    this.state.posts.map( p => (
-    <Container>
+  ProfileCard = () => (
+    this.state.profile( p => (
+      <Card textAlign='left' >
+        <Image src={ p.avatar } size='small' circular />
+        <Card.Content>
+          <Card.Header>{ p.first_name } { p.last_name }</Card.Header>
+          <Card.Description>{ p.description }</Card.Description>
+        </Card.Content>
+        <Card.Content extra>
+          <a>
+            <Icon name='user' />
+            { Math.floor((Math.random() * 1000) + 1) }
+          </a>
+        </Card.Content>
+      </Card>
+    ) )
+  )
+
+  ProfilePosts = () => (
+    this.state.posts( p => (
+      <Container>
       <Card centered raised fluid>
         <Feed.Event>
           <Feed.Label>
@@ -43,11 +62,18 @@ class Home extends React.Component {
 
   render() {
     return(
-      <div>
-        {this.feed()}
-      </div>
+      <Container>
+        <div class='profile'>
+          {this.ProfileCard()}
+        </div>
+        <div class='posts'>
+          {this.ProfilePosts()}
+        </div>
+      </Container>
+
     )
   }
+
 }
 
-export default Home;
+export default Profile;

@@ -1,5 +1,6 @@
 class Api::ProfilesController < ApplicationController
   class Api::WorldUsersController < ApplicationController
+    before_action :authenticate_user!
     before_action :set_profile, only: [:show, :update, :destroy]
   
     def index
@@ -7,7 +8,7 @@ class Api::ProfilesController < ApplicationController
     end
   
     def show
-      render json: @profile
+      render json: @profile.user_posts
     end
   
     def create
@@ -23,7 +24,7 @@ class Api::ProfilesController < ApplicationController
       if @profile.update(profile_params)
         render json: @profile
       else
-        render json: { errors: profile.errors.full_messages.join(',') }, status: 422
+        render json: { errors: @profile.errors.full_messages.join(',') }, status: 422
       end
     end
   

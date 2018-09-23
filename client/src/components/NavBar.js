@@ -3,8 +3,15 @@ import { Menu } from 'semantic-ui-react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleLogout } from '../reducers/user';
+import axios from 'axios';
 
 class NavBar extends Component {
+  componentDidMount() {
+    axios.get('/api/profiles')
+    .then(res => {
+      this.setState({ profiles: res.data })
+    })
+  }
   rightNavs = () => {
     const { user, dispatch, history } = this.props;
 
@@ -35,9 +42,18 @@ class NavBar extends Component {
       <div>
         <Menu pointing secondary>
           <Link to='/'>
-            <Menu.Item name='home' />
+            <Menu.Item name='Feed' />
           </Link>
           { this.rightNavs() }
+          <Menu.Menu position='left'>
+          <Link to='/api/profiles/:id'>
+            <Menu.Item name='Profile' />
+          </Link>
+          {  }
+        </Menu.Menu>
+        <Menu.Menu>
+          <Menu.Item name='myLife' />
+        </Menu.Menu>
         </Menu>
       </div>
     );
