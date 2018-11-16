@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import { Feed, Icon, Image, Card, Container } from 'semantic-ui-react';
+import { Feed, Icon, Image, Card, Container, Header } from 'semantic-ui-react';
+import { Link } from 'react-router-dom'
 
 class Home extends React.Component {
   state = { posts: [] }
@@ -44,6 +45,13 @@ class Home extends React.Component {
   render() {
     return(
       <div>
+        <Container>
+          <Header textAlign='center'>
+            <h2>myLife Feed</h2>
+          </Header>
+          <Link to="api/profiles">My Profile</Link>
+        </Container>
+        <br />
         {this.feed()}
       </div>
     )

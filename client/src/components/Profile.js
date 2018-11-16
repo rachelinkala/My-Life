@@ -3,6 +3,7 @@ import { Feed, Card, Icon, Image, Container } from 'semantic-ui-react';
 import axios from 'axios';
 
 
+
 class Profile extends React.Component {
   state = { posts: [] }
 

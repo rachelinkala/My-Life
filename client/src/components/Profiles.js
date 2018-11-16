@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Icon, Image, Card } from 'semantic-ui-react';
+import { Icon, Image, Card, Container } from 'semantic-ui-react';
 
 
 class Profile extends React.Component {
@@ -31,6 +31,16 @@ class Profile extends React.Component {
     ) )
   )
 
+  render() {
+    return(
+      <Container>
+        <div class='profile'>
+          {this.ProfileCard()}
+        </div>
+      </Container>
+
+    )
+  }
 }
 
 export default Profile;

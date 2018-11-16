@@ -12,6 +12,7 @@ class NavBar extends Component {
       this.setState({ profiles: res.data })
     })
   }
+  
   rightNavs = () => {
     const { user, dispatch, history } = this.props;
 
@@ -46,13 +47,9 @@ class NavBar extends Component {
           </Link>
           { this.rightNavs() }
           <Menu.Menu position='left'>
-          <Link to='/api/profiles/:id'>
+          <Link to='/profiles/:id'>
             <Menu.Item name='Profile' />
           </Link>
-          {  }
-        </Menu.Menu>
-        <Menu.Menu>
-          <Menu.Item name='myLife' />
         </Menu.Menu>
         </Menu>
       </div>
